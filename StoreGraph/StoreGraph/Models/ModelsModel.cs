@@ -7,5 +7,7 @@ namespace StoreGraph.Models
 {
     public class ModelsModel
     {
+        public StoreID StoreID { get; set; }
+        public StoreFloor StoreFloor { get; set; }
     }
 }

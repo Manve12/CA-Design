@@ -1,4 +1,4 @@
-﻿@model dynamic
+﻿@model StoreGraph.Models.ModelsModel
 
 @{
     ViewBag.Title = "Home Page";
@@ -6,9 +6,8 @@
 
 @using (Html.BeginForm("RenderGraph", "Home"))
 {
-    @Html.DropDownListFor(id => id.SelectedStoreID,new SelectList(ViewBag.StoreIDs))
-    @Html.DropDownListFor(floor => floor.SelectedStoreFloor, new SelectList(ViewBag.StoreFloors))
-
-
+    @Html.DropDownListFor(id => id.StoreID.SelectedStoreID, new SelectList(ViewBag.StoreIDs))
+    @Html.DropDownListFor(floor => floor.StoreFloor.SelectedStoreFloor, new SelectList(ViewBag.StoreFloors))
+    
     <input type="submit"  value="Get Average Bay Profit For Store"/>
 }
