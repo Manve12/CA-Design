@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StoreGraph.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,7 +16,8 @@ namespace StoreGraph.Controllers
 
         public ActionResult RenderGraph()
         {
-
+            var dataTable = GraphDataRetriever.GetBayAverageProfitGraph(1);
+            
             return View();
         }
     }
