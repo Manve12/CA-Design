@@ -1,9 +1,11 @@
-﻿@{
+﻿@model StoreGraph.Models.StoreID
+
+@{
     ViewBag.Title = "Home Page";
 }
 
 @using (Html.BeginForm("RenderGraph", "Home"))
 {
-    
+    @Html.DropDownListFor(id => id.SelectedStoreID,new SelectList(ViewBag.StoreIDs))
     <input type="submit"  value="Get Average Bay Profit For Store"/>
 }

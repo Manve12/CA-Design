@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StoreGraph.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -7,9 +8,9 @@ using System.Web;
 
 namespace StoreGraph.Data
 {
-    public class GetStoreIDs
+    public static class StoreIDs
     {
-        public DataTable Get()
+        public static DataTable Get()
         {
             DbConnect.OpenConnection();
 
@@ -25,6 +26,11 @@ namespace StoreGraph.Data
             DbConnect.CloseConnection();
 
             return data;
+        }
+
+        public static void SetModel(DataTable dataTable)
+        {
+            StoreIDModel.StoreIDs = dataTable.Select().Select(id => id.ItemArray[0]).Select(id => id.ToString()).ToList();
         }
     }
 }

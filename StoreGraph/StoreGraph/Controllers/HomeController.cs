@@ -2,6 +2,7 @@
 using StoreGraph.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Helpers;
@@ -13,13 +14,16 @@ namespace StoreGraph.Controllers
     {
         public ActionResult Index()
         {
+            StoreIDs.SetModel(StoreIDs.Get()); // retrieve the store ids and store them in the model
 
+            ViewBag.StoreIDs = StoreIDModel.StoreIDs;
+            
             return View();
         }
 
-        public ActionResult RenderGraph()
+        public ActionResult RenderGraph(int SelectedStoreID)
         {
-            var dataTable = GraphDataRetriever.GetBayAverageProfitGraph(1);
+            var dataTable = GraphDataRetriever.GetBayAverageProfitGraph(SelectedStoreID);
 
             AverageBayProfitModel.AverageProfitWeeks13 = dataTable
                                             .Select()
