@@ -160,6 +160,7 @@
     <Compile Include="Data\DbConnect.cs" />
     <Compile Include="Data\GraphDataRetriever.cs" />
     <Compile Include="Data\GraphRender.cs" />
+    <Compile Include="Models\GraphModel.cs" />
     <Compile Include="Templates\GraphTemplate.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

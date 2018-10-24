@@ -38,17 +38,11 @@ namespace StoreGraph.Controllers
                                             .Select(s => s.ToString())
                                             .ToList();
 
-            var newChart = GraphRender.RenderGraph(
-                600,
-                400,
-                "New chart",
-                "column",
-                GraphTemplate.graphTemplate,
-                AverageBayProfitModel.AverageProfitWeeks13.ToArray(),
-                AverageBayProfitModel.Bay.ToArray(),
-                "Bay Number",
-                "Average Profit"
-                );
+            GraphModel model = new GraphModel();
+            model.XAxisData = AverageBayProfitModel.Bay.ToArray();
+            model.YAxisData = AverageBayProfitModel.AverageProfitWeeks13.ToArray();
+
+            var newChart = GraphRender.RenderGraph(model);
 
             string imageBase64Data = Convert.ToBase64String(newChart);
             string imageDataURL = string.Format("data:image/png;base64,{0}", imageBase64Data);
