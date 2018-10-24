@@ -159,6 +159,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Data\DbConnect.cs" />
     <Compile Include="Data\GraphDataRetriever.cs" />
+    <Compile Include="Templates\GraphTemplate.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

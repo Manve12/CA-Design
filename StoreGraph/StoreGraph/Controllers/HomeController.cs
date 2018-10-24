@@ -37,22 +37,11 @@ namespace StoreGraph.Controllers
                                             .Select(s => s.ItemArray[2]) // selects the third instance (bay)
                                             .Select(s => s.ToString())
                                             .ToList();
-
-            string temp = @"<Chart>
-                      <ChartAreas>
-                        <ChartArea Name=""Default"" _Template_=""All"">
-                          <AxisY>
-                            <LabelStyle Font=""Verdana, 12px"" Interval=""1""/>
-                          </AxisY>
-                          <AxisX LineColor=""64, 64, 64, 64"" Interval=""1"">
-                            <LabelStyle Font=""Verdana, 12px"" />
-                          </AxisX>
-                        </ChartArea>
-                      </ChartAreas>
-                    </Chart>";
             
-            byte[] newChart = new Chart(width: 50 * AverageBayProfitModel.Bay.Count, height: 30 * AverageBayProfitModel.AverageProfitWeeks13.Count, theme:temp)
-                .AddTitle("BAY WEEK 13 PROFIT")
+            byte[] newChart = new Chart(width: 50 * AverageBayProfitModel.Bay.Count, 
+                                        height: 30 * AverageBayProfitModel.AverageProfitWeeks13.Count, 
+                                        theme:GraphTemplate.graphTemplate)
+                .AddTitle("Bay Week 13 Average Profit")
                 .AddSeries(
                     name: "baySeries",
                     chartType: "column",
@@ -60,6 +49,7 @@ namespace StoreGraph.Controllers
                     xValue: AverageBayProfitModel.Bay.ToArray()
                     )
                    .SetXAxis(min: 1, max: AverageBayProfitModel.Bay.Count, title: "Bay Numbers")
+                   .SetYAxis(title:"Average Profits")
                 .GetBytes();
 
             string imageBase64Data = Convert.ToBase64String(newChart);
