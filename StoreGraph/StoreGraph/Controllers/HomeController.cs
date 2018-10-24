@@ -38,13 +38,28 @@ namespace StoreGraph.Controllers
                                             .Select(s => s.ToString())
                                             .ToList();
 
-            byte[] newChart = new Chart(width: 900, height: 400)
+            string temp = @"<Chart>
+                      <ChartAreas>
+                        <ChartArea Name=""Default"" _Template_=""All"">
+                          <AxisY>
+                            <LabelStyle Font=""Verdana, 12px"" Interval=""1""/>
+                          </AxisY>
+                          <AxisX LineColor=""64, 64, 64, 64"" Interval=""1"">
+                            <LabelStyle Font=""Verdana, 12px"" />
+                          </AxisX>
+                        </ChartArea>
+                      </ChartAreas>
+                    </Chart>";
+            
+            byte[] newChart = new Chart(width: 50 * AverageBayProfitModel.Bay.Count, height: 30 * AverageBayProfitModel.AverageProfitWeeks13.Count, theme:temp)
                 .AddTitle("BAY WEEK 13 PROFIT")
                 .AddSeries(
+                    name: "baySeries",
                     chartType: "column",
-                    yValues: AverageBayProfitModel.Bay.ToArray(),
-                    xValue: AverageBayProfitModel.AverageProfitWeeks13.ToArray()
+                    yValues: AverageBayProfitModel.AverageProfitWeeks13.ToArray(),
+                    xValue: AverageBayProfitModel.Bay.ToArray()
                     )
+                   .SetXAxis(min: 1, max: AverageBayProfitModel.Bay.Count, title: "Bay Numbers")
                 .GetBytes();
 
             string imageBase64Data = Convert.ToBase64String(newChart);
