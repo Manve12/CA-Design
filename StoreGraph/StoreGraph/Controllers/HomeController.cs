@@ -37,20 +37,18 @@ namespace StoreGraph.Controllers
                                             .Select(s => s.ItemArray[2]) // selects the third instance (bay)
                                             .Select(s => s.ToString())
                                             .ToList();
-            
-            byte[] newChart = new Chart(width: 50 * AverageBayProfitModel.Bay.Count, 
-                                        height: 30 * AverageBayProfitModel.AverageProfitWeeks13.Count, 
-                                        theme:GraphTemplate.graphTemplate)
-                .AddTitle("Bay Week 13 Average Profit")
-                .AddSeries(
-                    name: "baySeries",
-                    chartType: "column",
-                    yValues: AverageBayProfitModel.AverageProfitWeeks13.ToArray(),
-                    xValue: AverageBayProfitModel.Bay.ToArray()
-                    )
-                   .SetXAxis(min: 1, max: AverageBayProfitModel.Bay.Count, title: "Bay Numbers")
-                   .SetYAxis(title:"Average Profits")
-                .GetBytes();
+
+            var newChart = GraphRender.RenderGraph(
+                600,
+                400,
+                "New chart",
+                "column",
+                GraphTemplate.graphTemplate,
+                AverageBayProfitModel.AverageProfitWeeks13.ToArray(),
+                AverageBayProfitModel.Bay.ToArray(),
+                "Bay Number",
+                "Average Profit"
+                );
 
             string imageBase64Data = Convert.ToBase64String(newChart);
             string imageDataURL = string.Format("data:image/png;base64,{0}", imageBase64Data);
