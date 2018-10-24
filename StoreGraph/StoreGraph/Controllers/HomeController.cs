@@ -47,7 +47,12 @@ namespace StoreGraph.Controllers
                     )
                 .GetBytes();
 
-            ViewBag.ImageUrl = newChart;
+            string imageBase64Data = Convert.ToBase64String(newChart);
+            string imageDataURL = string.Format("data:image/png;base64,{0}", imageBase64Data);
+            if (imageDataURL.Length > 0)
+            {
+                ViewBag.ImageUrl = imageDataURL;
+            }
             return View();
         }
     }
