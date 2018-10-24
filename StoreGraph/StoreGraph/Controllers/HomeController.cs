@@ -1,8 +1,10 @@
 ﻿using StoreGraph.Data;
+using StoreGraph.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 
 namespace StoreGraph.Controllers
@@ -17,7 +19,35 @@ namespace StoreGraph.Controllers
         public ActionResult RenderGraph()
         {
             var dataTable = GraphDataRetriever.GetBayAverageProfitGraph(1);
-            
+
+            AverageBayProfitModel.AverageProfitWeeks13 = dataTable
+                                            .Select()
+                                            .Select(s => s.ItemArray[0]) // selects the first instance (average profits weeks 13)
+                                            .Select(s => s.ToString())
+                                            .ToList();
+
+            AverageBayProfitModel.AverageProfitWeeks52 = dataTable
+                                            .Select()
+                                            .Select(s => s.ItemArray[1]) // selects the second instance (average profits weeks 52)
+                                            .Select(s => s.ToString())
+                                            .ToList();
+
+            AverageBayProfitModel.Bay = dataTable
+                                            .Select()
+                                            .Select(s => s.ItemArray[2]) // selects the third instance (bay)
+                                            .Select(s => s.ToString())
+                                            .ToList();
+
+            byte[] newChart = new Chart(width: 900, height: 400)
+                .AddTitle("BAY WEEK 13 PROFIT")
+                .AddSeries(
+                    chartType: "column",
+                    yValues: AverageBayProfitModel.Bay.ToArray(),
+                    xValue: AverageBayProfitModel.AverageProfitWeeks13.ToArray()
+                    )
+                .GetBytes();
+
+            ViewBag.ImageUrl = newChart;
             return View();
         }
     }
