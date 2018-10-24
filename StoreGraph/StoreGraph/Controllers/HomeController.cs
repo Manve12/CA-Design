@@ -41,6 +41,9 @@ namespace StoreGraph.Controllers
             GraphModel model = new GraphModel();
             model.XAxisData = AverageBayProfitModel.Bay.ToArray();
             model.YAxisData = AverageBayProfitModel.AverageProfitWeeks13.ToArray();
+            model.XAxisTitle = "Bay number";
+            model.YAxisTitle = "Average Profit";
+            model.Title = "Average profit per bay";
 
             var newChart = GraphRender.RenderGraph(model);
 
