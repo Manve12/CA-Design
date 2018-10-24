@@ -13,6 +13,7 @@ namespace StoreGraph.Controllers
     {
         public ActionResult Index()
         {
+
             return View();
         }
 
