@@ -12,5 +12,10 @@ namespace StoreGraph.Controllers
         {
             return View();
         }
+
+        public ActionResult RenderGraph()
+        {
+            return View();
+        }
     }
 }

@@ -2,4 +2,8 @@
     ViewBag.Title = "Home Page";
 }
 
-<img src="@ViewBag.ImageUrl"/>
+@using (Html.BeginForm("RenderGraph", "Home"))
+{
+
+    <input type="submit"  value="Get Profit For Store By Bay"/>
+}
