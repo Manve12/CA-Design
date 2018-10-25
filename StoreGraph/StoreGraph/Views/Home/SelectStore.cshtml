@@ -13,3 +13,9 @@
 
     <input type="submit" value="Select floor" />
 }
+
+@using (Html.BeginForm("RenderTotalSalesWeeks13", "Graph"))
+{
+    @Html.HiddenFor(id => id.SelectedStoreId);
+    <input type="submit" value="Weeks 13 total sales"/>
+}
