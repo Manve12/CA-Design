@@ -16,7 +16,7 @@ namespace StoreGraph.Controllers
         {
             StoreIDs.SetModel(StoreIDs.Get()); // retrieve the store ids and store them in the model
             
-            ViewBag.StoreIDs = StoreIDModel.StoreIDs;
+            ViewBag.StoreIDs = StoresModel.StoreIDs;
             
             return View();
         }
