@@ -158,6 +158,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Data\DbConnect.cs" />
+    <Compile Include="Data\StoreFloors.cs" />
     <Compile Include="Data\StoreIDs.cs" />
     <Compile Include="Data\GraphDataRetriever.cs" />
     <Compile Include="Data\GraphRender.cs" />

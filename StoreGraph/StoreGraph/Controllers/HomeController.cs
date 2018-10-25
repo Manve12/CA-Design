@@ -23,6 +23,9 @@ namespace StoreGraph.Controllers
 
         public ActionResult SelectStore(int SelectedStoreId)
         {
+            StoreFloors.SetModel(StoreFloors.Get(SelectedStoreId));
+
+            ViewBag.StoreFloors = StoresModel.StoreFloors;
 
             return View();
         }
