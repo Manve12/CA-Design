@@ -72,6 +72,8 @@ namespace StoreGraph.Controllers
             model.YAxisData = TotalSalesModel.TotalSales.ToArray();
             model.Height = TotalSalesModel.TotalSales.ToArray().Length * 40;
             model.Width = TotalSalesModel.TotalSales.ToArray().Length * 60;
+            model.XAxisTitle = "Weeks 13 Counter";
+            model.YAxisTitle = "Total Sales";
             model.GraphType = "line";
             
 
