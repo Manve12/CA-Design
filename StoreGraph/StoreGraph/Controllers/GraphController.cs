@@ -39,16 +39,7 @@ namespace StoreGraph.Controllers
             model.YAxisTitle = "Average Profit";
             model.Title = "Average profit per bay";
 
-            var newChart = GraphRender.RenderGraph(model);
-
-            string imageBase64Data = Convert.ToBase64String(newChart);
-            string imageDataURL = string.Format("data:image/png;base64,{0}", imageBase64Data);
-            if (imageDataURL.Length > 0)
-            {
-                ViewBag.ImageUrl = imageDataURL;
-            }
-
-            return View("~/Views/Home/RenderGraph.cshtml");
+            return RenderGraph(model);
         }
 
         public ActionResult RenderTotalSalesWeeks13(int SelectedStoreID)
@@ -75,18 +66,8 @@ namespace StoreGraph.Controllers
             model.XAxisTitle = "Weeks 13 Counter";
             model.YAxisTitle = "Total Sales";
             model.GraphType = "line";
-            
 
-            var newChart = GraphRender.RenderGraph(model);
-
-            string imageBase64Data = Convert.ToBase64String(newChart);
-            string imageDataURL = string.Format("data:image/png;base64,{0}", imageBase64Data);
-            if (imageDataURL.Length > 0)
-            {
-                ViewBag.ImageUrl = imageDataURL;
-            }
-
-            return View("~/Views/Home/RenderGraph.cshtml");
+            return RenderGraph(model);
         }
 
         public ActionResult RenderTotalSalesWeeks52(int SelectedStoreID)
@@ -115,7 +96,11 @@ namespace StoreGraph.Controllers
             model.YAxisTitle = "Total Sales";
             model.GraphType = "line";
 
+            return RenderGraph(model);
+        }
 
+        private ActionResult RenderGraph(GraphModel model)
+        {
             var newChart = GraphRender.RenderGraph(model);
 
             string imageBase64Data = Convert.ToBase64String(newChart);
