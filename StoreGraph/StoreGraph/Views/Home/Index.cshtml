@@ -4,14 +4,9 @@
     ViewBag.Title = "Home Page";
 }
 
-
-@using (Html.BeginForm("RenderGraph", "Home"))
+@using (Html.BeginForm("SelectStore", "Home"))
 {
     @Html.DropDownListFor(id => id.SelectedStoreID, new SelectList(ViewBag.StoreIDs), new { onchange = "" })
 
-    if (ViewBag.StoreFloors != null)
-    {
-        Html.DropDownListFor(floor => floor.SelectedStoreFloor, new SelectList(ViewBag.StoreFloors));
-    }
-    <input type="submit" value="Get Average Bay Profit For Store" />
+    <input type="submit" value="Select store" />
 }
