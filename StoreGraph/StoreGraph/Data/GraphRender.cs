@@ -39,29 +39,36 @@ namespace StoreGraph.Data
 
         public static byte[] RenderGraph(GraphModel model)
         {
-            byte[] newChart = new Chart(width: model.Width,
-                                           height: model.Height,
-                                           theme: model.GraphTemplate)
-                   .AddTitle(model.Title)
-                   .AddSeries(
-                       chartType: model.GraphType,
-                       yValues: model.YAxisData,
-                       xValue: model.XAxisData,
-                       name: model.SeriesTitleInitial
-                       )
+            var newChart = new Chart(width: model.Width, height: model.Height, theme: model.GraphTemplate);
+            newChart.AddTitle(model.Title)
                        .AddSeries(
-                       chartType: model.GraphType,
-                       yValues: model.YAxisDataAdditional,
-                       xValue: model.XAxisDataAdditional,
-                       name: model.SeriesTitleAdditional
-                       )
-                      .SetXAxis(min: 1, max: model.XAxisData.Length, title: model.XAxisTitle)
-                      .SetYAxis(title: model.YAxisTitle)
-                      .AddLegend()
-                   .GetBytes();
+                           chartType: model.GraphType,
+                           yValues: model.YAxisData,
+                           xValue: model.XAxisData,
+                           name: model.SeriesTitleInitial
+                           );
+            if (model.SeriesTitleInitial != null)
+            {
 
-            return newChart;
+                newChart.AddSeries(
+                chartType: model.GraphType,
+                yValues: model.YAxisDataAdditional,
+                xValue: model.XAxisDataAdditional,
+                name: model.SeriesTitleAdditional
+                )
+
+               .AddLegend();
+
+            }
+
+            newChart.SetXAxis(min: 1, max: model.XAxisData.Length, title: model.XAxisTitle)
+                          .SetYAxis(title: model.YAxisTitle);
+
+
+            return newChart.GetBytes();
         }
+
+        
 
     }
 }
