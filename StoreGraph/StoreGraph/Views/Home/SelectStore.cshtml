@@ -1,6 +1,15 @@
-﻿
+﻿@model StoreGraph.Models.StoreModel
+
 @{
     ViewBag.Title = "Store Selected";
 }
 
 @*This page renders after a store is selected*@
+
+@using (Html.BeginForm("RenderGraph", "Home"))
+{
+    @Html.HiddenFor(id => id.SelectedStoreId);
+    @Html.DropDownListFor(id => id.SelectedStoreFloor, new SelectList(ViewBag.StoreFloors))
+
+    <input type="submit" value="Render" />
+}
