@@ -47,5 +47,24 @@ namespace StoreGraph.Data
 
             return data;
         }
+
+        public static DataTable GetTotalSalesWeeks52(int StoreID)
+        {
+            DbConnect.OpenConnection();
+
+            SqlCommand cmd = DbConnect.ConnectionDatabase.CreateCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "sp_GetTotalSalesWeeks52";
+            cmd.Parameters.AddWithValue("@StoreID", StoreID);
+            cmd.CommandTimeout = DbConnect.ConnectionTimeout;
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable data = new DataTable();
+            da.Fill(data);
+
+            DbConnect.CloseConnection();
+
+            return data;
+        }
     }
 }

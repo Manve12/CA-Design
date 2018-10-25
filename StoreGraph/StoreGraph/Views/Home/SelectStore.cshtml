@@ -19,3 +19,9 @@
     @Html.HiddenFor(id => id.SelectedStoreId);
     <input type="submit" value="Weeks 13 total sales"/>
 }
+
+@using (Html.BeginForm("RenderTotalSalesWeeks52", "Graph"))
+{
+    @Html.HiddenFor(id => id.SelectedStoreId);
+    <input type="submit" value="Weeks 52 total sales" />
+}

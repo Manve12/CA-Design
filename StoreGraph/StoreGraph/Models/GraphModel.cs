@@ -9,7 +9,7 @@
 
         public string GraphType { get; set; } = "column";
 
-        public string GraphTemplate { get; set; } = Data.GraphTemplate.graphTemplate;
+        public string GraphTemplate { get; set; } = Data.GraphTemplate.graphTemplateInterval10;
 
         public string[] XAxisData { get; set; }
         public string[] YAxisData { get; set; }
