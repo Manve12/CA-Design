@@ -6,9 +6,4 @@ namespace StoreGraph.Models
     {
         public static List<string> StoreFloors { get; set; }
     }
-
-    public class StoreFloor
-    {
-        public string SelectedStoreFloor { get; set; }
-    }
 }

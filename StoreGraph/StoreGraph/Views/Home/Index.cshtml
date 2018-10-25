@@ -1,13 +1,17 @@
-﻿@model StoreGraph.Models.ModelsModel
+﻿@model StoreGraph.Models.StoreModel
 
 @{
     ViewBag.Title = "Home Page";
 }
 
+
 @using (Html.BeginForm("RenderGraph", "Home"))
 {
-    @Html.DropDownListFor(id => id.StoreID.SelectedStoreID, new SelectList(ViewBag.StoreIDs))
-    @Html.DropDownListFor(floor => floor.StoreFloor.SelectedStoreFloor, new SelectList(ViewBag.StoreFloors))
-    
-    <input type="submit"  value="Get Average Bay Profit For Store"/>
+    @Html.DropDownListFor(id => id.SelectedStoreID, new SelectList(ViewBag.StoreIDs), new { onchange = "" })
+
+    if (ViewBag.StoreFloors != null)
+    {
+        Html.DropDownListFor(floor => floor.SelectedStoreFloor, new SelectList(ViewBag.StoreFloors));
+    }
+    <input type="submit" value="Get Average Bay Profit For Store" />
 }

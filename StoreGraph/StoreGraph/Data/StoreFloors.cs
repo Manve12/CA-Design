@@ -8,7 +8,7 @@ using System.Web;
 
 namespace StoreGraph.Data
 {
-    public static class StoreIDs
+    public static class StoreFloors
     {
         public static DataTable Get()
         {
@@ -16,7 +16,7 @@ namespace StoreGraph.Data
 
             SqlCommand cmd = DbConnect.ConnectionDatabase.CreateCommand();
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = "sp_GetStoreIDAndFloors";
+            cmd.CommandText = "sp_GetStoreFloors";
             cmd.CommandTimeout = DbConnect.ConnectionTimeout;
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -30,8 +30,7 @@ namespace StoreGraph.Data
 
         public static void SetModel(DataTable dataTable)
         {
-            StoreModel.
-            //StoreIDModel.StoreIDs = dataTable.Select().Select(id => id.ItemArray[0]).Select(id => id.ToString()).ToList();
+            StoreFloorModel.StoreFloors = dataTable.Select().Select(floor => floor.ItemArray[0]).Select(floor => floor.ToString()).ToList();
         }
     }
 }

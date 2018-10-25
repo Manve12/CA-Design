@@ -6,9 +6,4 @@ namespace StoreGraph.Models
     {
         public static List<string> StoreIDs { get; set; }
     }
-
-    public class StoreID
-    {
-        public int SelectedStoreID { get; set; }
-    }
 }

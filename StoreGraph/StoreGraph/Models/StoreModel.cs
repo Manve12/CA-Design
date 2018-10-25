@@ -5,9 +5,9 @@ using System.Web;
 
 namespace StoreGraph.Models
 {
-    public class ModelsModel
+    public class StoreModel
     {
-        public StoreID StoreID { get; set; }
-        public StoreFloor StoreFloor { get; set; }
+        public int SelectedStoreID { get; set; }
+        public int SelectedStoreFloor { get; set; }
     }
 }

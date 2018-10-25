@@ -158,13 +158,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Data\DbConnect.cs" />
+    <Compile Include="Data\StoreFloors.cs" />
     <Compile Include="Data\StoreIDs.cs" />
     <Compile Include="Data\GraphDataRetriever.cs" />
     <Compile Include="Data\GraphRender.cs" />
     <Compile Include="Models\GraphModel.cs" />
-    <Compile Include="Models\ModelsModel.cs" />
     <Compile Include="Models\StoreFloorModel.cs" />
     <Compile Include="Models\StoreIDModel.cs" />
+    <Compile Include="Models\StoreModel.cs" />
     <Compile Include="Templates\GraphTemplate.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
