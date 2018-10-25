@@ -54,6 +54,7 @@ namespace StoreGraph.Data
                 chartType: model.GraphType,
                 yValues: model.YAxisDataAdditional,
                 xValue: model.XAxisDataAdditional,
+                
                 name: model.SeriesTitleAdditional
                 )
 
@@ -61,6 +62,7 @@ namespace StoreGraph.Data
 
             }
 
+            if (model.XAxisData != null)
             newChart.SetXAxis(min: 1, max: model.XAxisData.Length, title: model.XAxisTitle)
                           .SetYAxis(title: model.YAxisTitle);
 

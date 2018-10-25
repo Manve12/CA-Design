@@ -163,6 +163,7 @@
     <Compile Include="Data\StoreIDs.cs" />
     <Compile Include="Data\GraphDataRetriever.cs" />
     <Compile Include="Data\GraphRender.cs" />
+    <Compile Include="Models\AverageBayVolumeModel.cs" />
     <Compile Include="Models\GraphModel.cs" />
     <Compile Include="Models\StoreModel.cs" />
     <Compile Include="Models\StoresModel.cs" />

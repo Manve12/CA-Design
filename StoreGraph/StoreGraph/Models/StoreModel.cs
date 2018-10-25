@@ -7,5 +7,6 @@ namespace StoreGraph.Models
     {
         public int SelectedStoreId { get; set; }
         public string SelectedStoreFloor { get; set; }
+        public int SelectedBay { get; set; }
     }
 }

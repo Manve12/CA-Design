@@ -14,6 +14,12 @@ namespace StoreGraph.Data
             return GetData(StoreID, "sp_GetBayAverageProfitGraph", StoreFloor);
         }
 
+        public static DataTable GetBayVolume(int StoreID, string StoreFloor)
+        {
+            return GetData(StoreID, "sp_GetBayVolume", StoreFloor);
+        }
+
+
         public static DataTable GetTotalSalesWeeks13(int StoreID)
         {
             return GetData(StoreID, "sp_GetTotalSalesWeeks13");
@@ -44,7 +50,7 @@ namespace StoreGraph.Data
             return GetData(StoreID, "sp_GetTotalVolumeAndSalesWeeks52");
         }
 
-        private static DataTable GetData(int StoreID, string StoredProcedureName, string StoreFloor = null)
+        private static DataTable GetData(int StoreID, string StoredProcedureName, string StoreFloor = null, int? BayId = null)
         {
             DbConnect.OpenConnection();
 
@@ -52,8 +58,10 @@ namespace StoreGraph.Data
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = StoredProcedureName;
             cmd.Parameters.AddWithValue("@StoreID", StoreID);
-            if (StoreFloor!=null)
+            if (StoreFloor != null)
             cmd.Parameters.AddWithValue("@StoreFloor", StoreFloor);
+            if (BayId != null)
+            cmd.Parameters.AddWithValue("@BayID", (int)BayId);
             cmd.CommandTimeout = DbConnect.ConnectionTimeout;
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);

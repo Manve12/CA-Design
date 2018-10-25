@@ -10,6 +10,8 @@ namespace StoreGraph.Controllers
 {
     public class GraphController : Controller
     {
+
+ /* Store and floor specific methods */
         public ActionResult RenderProfitsPerBay(int SelectedStoreID, string SelectedStoreFloor)
         {
             var dataTable = GraphDataRetriever.GetBayAverageProfit(SelectedStoreID,SelectedStoreFloor);
@@ -42,6 +44,39 @@ namespace StoreGraph.Controllers
             return RenderGraph(model);
         }
 
+        public ActionResult RenderVolumePerBay(int SelectedStoreID, string SelectedStoreFloor)
+        {
+            var dataTable = GraphDataRetriever.GetBayVolume(SelectedStoreID, SelectedStoreFloor);
+
+            AverageBayVolumeModel.AverageVolumeWeeks13 = dataTable
+                                            .Select()
+                                            .Select(s => s.ItemArray[0]) // selects the first instance (average volume weeks 13)
+                                            .Select(s => s.ToString())
+                                            .ToList();
+
+            AverageBayVolumeModel.AverageVolumeWeeks13 = dataTable
+                                            .Select()
+                                            .Select(s => s.ItemArray[1]) // selects the second instance (average volume weeks 52)
+                                            .Select(s => s.ToString())
+                                            .ToList();
+
+            AverageBayVolumeModel.Bay = dataTable
+                                            .Select()
+                                            .Select(s => s.ItemArray[2]) // selects the third instance (bay)
+                                            .Select(s => s.ToString())
+                                            .ToList();
+
+            GraphModel model = new GraphModel();
+            model.XAxisData = AverageBayVolumeModel.Bay.ToArray();
+            model.YAxisData = AverageBayVolumeModel.AverageVolumeWeeks13.ToArray();
+            model.XAxisTitle = "Bay number";
+            model.YAxisTitle = "Average Profit";
+            model.Title = "Average profit per bay";
+
+            return RenderGraph(model);
+        }
+
+        /* Store specific methods */
         public ActionResult RenderTotalSalesWeeks13(int SelectedStoreID)
         {
             var dataTable = GraphDataRetriever.GetTotalSalesWeeks13(SelectedStoreID);
@@ -245,7 +280,6 @@ namespace StoreGraph.Controllers
 
             return RenderGraph(model);
         }
-
 
         private ActionResult RenderGraph(GraphModel model)
         {
