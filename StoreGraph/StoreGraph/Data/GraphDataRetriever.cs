@@ -39,6 +39,11 @@ namespace StoreGraph.Data
             return GetData(StoreID, "sp_GetTotalVolumeAndSalesWeeks13");
         }
 
+        public static DataTable GetTotalVolumeAndSalesWeeks52(int StoreID)
+        {
+            return GetData(StoreID, "sp_GetTotalVolumeAndSalesWeeks52");
+        }
+
         private static DataTable GetData(int StoreID, string StoredProcedureName, string StoreFloor = null)
         {
             DbConnect.OpenConnection();

@@ -201,6 +201,52 @@ namespace StoreGraph.Controllers
             return RenderGraph(model);
         }
 
+        public ActionResult RenderTotalVolumeAndSalesWeeks52(int SelectedStoreID)
+        {
+            var dataTable = GraphDataRetriever.GetTotalVolumeAndSalesWeeks52(SelectedStoreID);
+
+            TotalVolumeModel.TotalVolume = dataTable
+                                            .Select()
+                                            .Select(s => s.ItemArray[0])
+                                            .Select(s => s.ToString())
+                                            .ToList();
+
+            TotalSalesModel.TotalSales = dataTable
+                                            .Select()
+                                            .Select(s => s.ItemArray[1])
+                                            .Select(s => s.ToString())
+                                            .ToList();
+
+            var weekCounter = dataTable
+                                            .Select()
+                                            .Select(s => s.ItemArray[2])
+                                            .Select(s => s.ToString())
+                                            .ToList();
+
+            TotalVolumeModel.WeekCounter = weekCounter;
+            TotalSalesModel.WeekCounter = weekCounter;
+
+            GraphModel model = new GraphModel();
+            model.XAxisData = TotalVolumeModel.WeekCounter.ToArray();
+            model.YAxisData = TotalVolumeModel.TotalVolume.ToArray();
+            model.XAxisDataAdditional = TotalSalesModel.WeekCounter.ToArray();
+            model.YAxisDataAdditional = TotalSalesModel.TotalSales.ToArray();
+
+            model.Height = TotalSalesModel.TotalSales.ToArray().Length * 40;
+            model.Width = TotalSalesModel.TotalSales.ToArray().Length * 60;
+            model.GraphTemplate = GraphTemplate.graphTemplateInterval100;
+
+            model.SeriesTitleInitial = "Volume";
+            model.SeriesTitleAdditional = "Sales";
+
+            model.XAxisTitle = "Weeks 52 Counter";
+            model.YAxisTitle = "Total volume and sales";
+            model.GraphType = "line";
+
+            return RenderGraph(model);
+        }
+
+
         private ActionResult RenderGraph(GraphModel model)
         {
             var newChart = GraphRender.RenderGraph(model);
