@@ -30,8 +30,7 @@ namespace StoreGraph.Data
 
         public static void SetModel(DataTable dataTable)
         {
-            
-            Repository.StoreModel.StoreIds = dataTable.Select().Select(id => id.ItemArray[0]).Select(id => id.ToString()).ToList();
+            StoresModel.StoreIds = dataTable.Select().Select(id => id.ItemArray[0]).Select(id => id.ToString()).ToList();
         }
     }
 }

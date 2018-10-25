@@ -14,10 +14,10 @@ namespace StoreGraph.Controllers
     {
         public ActionResult Index()
         {
-            StoreIDs.SetModel(StoreIDs.Get()); // retrieve the store ids and store them in the model
-            
-            ViewBag.StoreIDs = StoreModel.StoreIDs;
-            
+            StoreIDs.SetModel(StoreIDs.Get());
+
+            ViewBag.StoreIDs = StoresModel.StoreIds;
+
             return View();
         }
 

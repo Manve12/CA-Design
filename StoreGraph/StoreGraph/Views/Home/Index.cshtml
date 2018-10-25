@@ -6,7 +6,7 @@
 
 @using (Html.BeginForm("SelectStore", "Home"))
 {
-    @Html.DropDownListFor(id => id.SelectedStoreID, new SelectList(ViewBag.StoreIDs), new { onchange = "" })
+    @Html.DropDownListFor(id => id.SelectedStoreId, new SelectList(ViewBag.StoreIDs), new { onchange = "" })
 
     <input type="submit" value="Select store" />
 }
