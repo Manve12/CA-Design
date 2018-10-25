@@ -46,13 +46,22 @@ namespace StoreGraph.Data
                    .AddSeries(
                        chartType: model.GraphType,
                        yValues: model.YAxisData,
-                       xValue: model.XAxisData
+                       xValue: model.XAxisData,
+                       name: model.SeriesTitleInitial
+                       )
+                       .AddSeries(
+                       chartType: model.GraphType,
+                       yValues: model.YAxisDataAdditional,
+                       xValue: model.XAxisDataAdditional,
+                       name: model.SeriesTitleAdditional
                        )
                       .SetXAxis(min: 1, max: model.XAxisData.Length, title: model.XAxisTitle)
                       .SetYAxis(title: model.YAxisTitle)
+                      .AddLegend()
                    .GetBytes();
 
             return newChart;
         }
+
     }
 }
