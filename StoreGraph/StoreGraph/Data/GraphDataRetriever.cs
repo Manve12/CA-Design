@@ -9,7 +9,7 @@ namespace StoreGraph.Data
 {
     public static class GraphDataRetriever
     {
-        public static DataTable GetBayAverageProfitGraph(int StoreID)
+        public static DataTable GetBayAverageProfit(int StoreID, string StoreFloor)
         {
             DbConnect.OpenConnection();
 
@@ -17,6 +17,7 @@ namespace StoreGraph.Data
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "sp_GetBayAverageProfitGraph";
             cmd.Parameters.AddWithValue("@StoreID", StoreID);
+            cmd.Parameters.AddWithValue("@StoreFloor", StoreFloor);
             cmd.CommandTimeout = DbConnect.ConnectionTimeout;
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);

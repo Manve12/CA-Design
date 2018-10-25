@@ -1,4 +1,5 @@
-﻿
+﻿@model StoreGraph.Models.StoreModel
+
 @{
     ViewBag.Title = "SelectFloor";
 }
@@ -6,6 +7,7 @@
 
 @using (Html.BeginForm("RenderProfitsPerBay", "Graph"))
 {
-
+    @Html.HiddenFor(id => id.SelectedStoreId);
+    @Html.HiddenFor(floor => floor.SelectedStoreFloor);
     <input type="submit" value="Get Profits Per Bay" />
 }
