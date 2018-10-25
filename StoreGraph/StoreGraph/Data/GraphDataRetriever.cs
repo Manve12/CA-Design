@@ -29,13 +29,13 @@ namespace StoreGraph.Data
             return data;
         }
 
-        public static DataTable GetTotalSalesWeeks13(int StoreID)
+        private static DataTable GetTotal(int StoreID, string StoredProcedureName)
         {
             DbConnect.OpenConnection();
 
             SqlCommand cmd = DbConnect.ConnectionDatabase.CreateCommand();
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = "sp_GetTotalSalesWeeks13";
+            cmd.CommandText = StoredProcedureName;
             cmd.Parameters.AddWithValue("@StoreID", StoreID);
             cmd.CommandTimeout = DbConnect.ConnectionTimeout;
 
@@ -48,23 +48,24 @@ namespace StoreGraph.Data
             return data;
         }
 
+        public static DataTable GetTotalSalesWeeks13(int StoreID)
+        {
+            return GetTotal(StoreID, "sp_GetTotalSalesWeeks13");
+        }
+
         public static DataTable GetTotalSalesWeeks52(int StoreID)
         {
-            DbConnect.OpenConnection();
+           return GetTotal(StoreID, "sp_GetTotalSalesWeeks52");
+        }
 
-            SqlCommand cmd = DbConnect.ConnectionDatabase.CreateCommand();
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = "sp_GetTotalSalesWeeks52";
-            cmd.Parameters.AddWithValue("@StoreID", StoreID);
-            cmd.CommandTimeout = DbConnect.ConnectionTimeout;
+        public static DataTable GetTotalVolumeWeeks13(int StoreID)
+        {
+            return GetTotal(StoreID,"sp_GetTotalVolumeWeeks13");
+        }
 
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable data = new DataTable();
-            da.Fill(data);
-
-            DbConnect.CloseConnection();
-
-            return data;
+        public static DataTable GetTotalVolumeWeeks52(int StoreID)
+        {
+            return GetTotal(StoreID,"sp_GetTotalVolumeWeeks52");
         }
     }
 }

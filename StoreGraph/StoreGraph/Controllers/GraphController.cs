@@ -99,6 +99,63 @@ namespace StoreGraph.Controllers
             return RenderGraph(model);
         }
 
+        public ActionResult RenderTotalVolumeWeeks13(int SelectedStoreID)
+        {
+            var dataTable = GraphDataRetriever.GetTotalVolumeWeeks13(SelectedStoreID);
+
+            TotalSalesModel.TotalSales = dataTable
+                                            .Select()
+                                            .Select(s => s.ItemArray[0])
+                                            .Select(s => s.ToString())
+                                            .ToList();
+
+            TotalSalesModel.WeekCounter = dataTable
+                                            .Select()
+                                            .Select(s => s.ItemArray[1])
+                                            .Select(s => s.ToString())
+                                            .ToList();
+
+            GraphModel model = new GraphModel();
+            model.XAxisData = TotalSalesModel.WeekCounter.ToArray();
+            model.YAxisData = TotalSalesModel.TotalSales.ToArray();
+            model.Height = TotalSalesModel.TotalSales.ToArray().Length * 40;
+            model.Width = TotalSalesModel.TotalSales.ToArray().Length * 60;
+            model.XAxisTitle = "Weeks 13 Counter";
+            model.YAxisTitle = "Total Volume";
+            model.GraphType = "line";
+
+            return RenderGraph(model);
+        }
+
+        public ActionResult RenderTotalVolumeWeeks52(int SelectedStoreID)
+        {
+            var dataTable = GraphDataRetriever.GetTotalVolumeWeeks52(SelectedStoreID);
+
+            TotalSalesModel.TotalSales = dataTable
+                                            .Select()
+                                            .Select(s => s.ItemArray[0])
+                                            .Select(s => s.ToString())
+                                            .ToList();
+
+            TotalSalesModel.WeekCounter = dataTable
+                                            .Select()
+                                            .Select(s => s.ItemArray[1])
+                                            .Select(s => s.ToString())
+                                            .ToList();
+
+            GraphModel model = new GraphModel();
+            model.XAxisData = TotalSalesModel.WeekCounter.ToArray();
+            model.YAxisData = TotalSalesModel.TotalSales.ToArray();
+            model.Height = TotalSalesModel.TotalSales.ToArray().Length * 40;
+            model.Width = TotalSalesModel.TotalSales.ToArray().Length * 60;
+            model.GraphTemplate = GraphTemplate.graphTemplateInterval100;
+            model.XAxisTitle = "Weeks 52 Counter";
+            model.YAxisTitle = "Total Volume";
+            model.GraphType = "line";
+
+            return RenderGraph(model);
+        }
+
         private ActionResult RenderGraph(GraphModel model)
         {
             var newChart = GraphRender.RenderGraph(model);
