@@ -31,8 +31,17 @@ namespace StoreGraph.Controllers
             return View();
         }
 
+        public ActionResult SelectFloor(int SelectedStoreId, string SelectedStoreFloor)
+        {
+            ViewBag.SelectedStoreId = SelectedStoreId;
+            ViewBag.SelectedStoreFloor = SelectedStoreFloor;
+
+            return View();
+        }
+
         public ActionResult RenderGraph(int SelectedStoreID, string SelectedStoreFloor)
         {
+            
             var dataTable = GraphDataRetriever.GetBayAverageProfitGraph(SelectedStoreID);
 
             AverageBayProfitModel.AverageProfitWeeks13 = dataTable

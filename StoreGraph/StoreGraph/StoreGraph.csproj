@@ -208,6 +208,7 @@
     <Content Include="Views\Home\RenderGraph.cshtml" />
     <Content Include="web.config" />
     <Content Include="Views\Home\SelectStore.cshtml" />
+    <Content Include="Views\Home\SelectFloor.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

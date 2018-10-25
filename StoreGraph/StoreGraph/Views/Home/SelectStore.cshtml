@@ -6,10 +6,10 @@
 
 @*This page renders after a store is selected*@
 
-@using (Html.BeginForm("RenderGraph", "Home"))
+@using (Html.BeginForm("SelectFloor", "Home"))
 {
     @Html.HiddenFor(id => id.SelectedStoreId);
     @Html.DropDownListFor(id => id.SelectedStoreFloor, new SelectList(ViewBag.StoreFloors))
 
-    <input type="submit" value="Render" />
+    <input type="submit" value="Select floor" />
 }
