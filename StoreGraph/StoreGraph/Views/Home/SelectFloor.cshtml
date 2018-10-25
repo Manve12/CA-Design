@@ -3,5 +3,9 @@
     ViewBag.Title = "SelectFloor";
 }
 
-<h2>SelectFloor</h2>
 
+@using (Html.BeginForm("RenderProfitsPerBay", "Graph"))
+{
+
+    <input type="submit" value="Get Profits Per Bay" />
+}
