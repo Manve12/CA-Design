@@ -20,6 +20,7 @@ namespace StoreGraph.Data
                                          string yAxisTitle
             )
         {
+
             byte[] newChart = new Chart(width: chartWidth,
                                            height: chartHeight,
                                            theme: graphTemplate)

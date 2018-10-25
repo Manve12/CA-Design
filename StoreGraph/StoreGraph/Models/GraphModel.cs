@@ -16,5 +16,9 @@
 
         public string XAxisTitle { get; set; }
         public string YAxisTitle { get; set; }
+
+        public int GraphIntervalX { get; set; } = 600;
+        public int GraphIntervalY { get; set; } = 400;
+
     }
 }

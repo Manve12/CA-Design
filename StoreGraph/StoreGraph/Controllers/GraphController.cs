@@ -66,13 +66,14 @@ namespace StoreGraph.Controllers
                                             .Select(s => s.ItemArray[1])
                                             .Select(s => s.ToString())
                                             .ToList();
-
-
-
+            
             GraphModel model = new GraphModel();
             model.XAxisData = TotalSalesModel.WeekCounter.ToArray();
             model.YAxisData = TotalSalesModel.TotalSales.ToArray();
+            model.Height = TotalSalesModel.TotalSales.ToArray().Length * 40;
+            model.Width = TotalSalesModel.TotalSales.ToArray().Length * 60;
             model.GraphType = "line";
+            
 
             var newChart = GraphRender.RenderGraph(model);
 
