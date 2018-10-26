@@ -17,3 +17,10 @@
     @Html.HiddenFor(floor => floor.SelectedStoreFloor);
     <input type="submit" value="Get volume per bay" />
 }
+
+@using (Html.BeginForm("RenderSalesPerBay", "Graph"))
+{
+    @Html.HiddenFor(id => id.SelectedStoreId);
+    @Html.HiddenFor(floor => floor.SelectedStoreFloor);
+    <input type="submit" value="Get sales per bay" />
+}

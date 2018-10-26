@@ -19,6 +19,11 @@ namespace StoreGraph.Data
             return GetData(StoreID, "sp_GetBayVolume", StoreFloor);
         }
 
+        public static DataTable GetBaySales(int StoreID, string StoreFloor)
+        {
+            return GetData(StoreID, "sp_GetBaySales", StoreFloor);
+        }
+
 
         public static DataTable GetTotalSalesWeeks13(int StoreID)
         {

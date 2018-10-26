@@ -76,6 +76,39 @@ namespace StoreGraph.Controllers
             return RenderGraph(model);
         }
 
+        public ActionResult RenderSalesPerBay(int SelectedStoreID, string SelectedStoreFloor)
+        {
+            var dataTable = GraphDataRetriever.GetBaySales(SelectedStoreID, SelectedStoreFloor);
+
+            AverageBaySalesModel.AverageSalesWeeks13 = dataTable
+                                            .Select()
+                                            .Select(s => s.ItemArray[0]) // selects the first instance (average volume weeks 13)
+                                            .Select(s => s.ToString())
+                                            .ToList();
+
+            AverageBaySalesModel.AverageSalesWeeks52 = dataTable
+                                            .Select()
+                                            .Select(s => s.ItemArray[1]) // selects the second instance (average volume weeks 52)
+                                            .Select(s => s.ToString())
+                                            .ToList();
+
+            AverageBaySalesModel.Bay = dataTable
+                                            .Select()
+                                            .Select(s => s.ItemArray[2]) // selects the third instance (bay)
+                                            .Select(s => s.ToString())
+                                            .ToList();
+
+            GraphModel model = new GraphModel();
+            model.XAxisData = AverageBaySalesModel.Bay.ToArray();
+            model.YAxisData = AverageBaySalesModel.AverageSalesWeeks13.ToArray();
+            model.XAxisTitle = "Bay number";
+            model.YAxisTitle = "Average Profit";
+            model.Title = "Average profit per bay";
+
+            return RenderGraph(model);
+        }
+
+
         /* Store specific methods */
         public ActionResult RenderTotalSalesWeeks13(int SelectedStoreID)
         {
